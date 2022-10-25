@@ -1,6 +1,8 @@
 const crudRouter = require("./routes/crudRoutes");
 const authRouter = require("./routes/authRoutes");
 
+const dotenv = require("dotenv");
+const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
@@ -14,6 +16,8 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+dotenv.config({ path: path.resolve(__dirname, "./.env") });
 
 app.use(express.json());
 app.use("/", crudRouter);
